@@ -1,4 +1,4 @@
-# Proyecto Integrador U3 - Avance 9/16
+# Proyecto Integrador U3 - Avance 10/16
 
 Aplicación web de inventario desarrollada con Python, Flask, Jinja2, HTML, CSS,
 JavaScript y Bootstrap.
