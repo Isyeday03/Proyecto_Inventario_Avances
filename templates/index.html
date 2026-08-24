@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Inicio | Sistema de Inventario{% endblock %}
+{% block header %}Sistema Web de Inventario{% endblock %}
+{% block subtitle %}Proyecto Integrador - Desarrollo de Aplicaciones Web{% endblock %}
+{% block content %}
+<div class="text-center mb-5">
+    <h2 class="fw-bold">Panel principal</h2>
+    <p class="text-secondary">Información general del sistema cargada dinámicamente desde Flask.</p>
+</div>
+<div class="row g-4">
+{% for titulo, total, endpoint in [
+    ("Productos", total_productos, "ver_productos"),
+    ("Clientes", total_clientes, "ver_clientes"),
+    ("Proveedores", total_proveedores, "ver_proveedores"),
+    ("Facturas", total_facturas, "ver_facturacion")
+] %}
+    <div class="col-md-6 col-lg-3">
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-body text-center">
+                <h5>{{ titulo }}</h5>
+                <p class="display-6 fw-bold">{{ total }}</p>
+                <a href="{{ url_for(endpoint) }}" class="btn btn-primary">Ver {{ titulo|lower }}</a>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+</div>
+<div class="alert alert-info mt-5">
+    Los datos mostrados son ejemplos definidos en <strong>app.py</strong> y no utilizan una base de datos.
+</div>
+{% endblock %}

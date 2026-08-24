@@ -2,8 +2,7 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
-# Datos demostrativos para esta semana.
-# No se utiliza base de datos todavía.
+# Datos temporales de ejemplo. Semana 10: sin base de datos.
 productos = [
     {"id": 1, "nombre": "Taladro inalámbrico", "categoria": "Herramientas", "precio": 89.90, "stock": 12},
     {"id": 2, "nombre": "Martillo", "categoria": "Herramientas", "precio": 12.50, "stock": 28},
@@ -29,7 +28,6 @@ facturas = [
     {"numero": "F-003", "cliente": "Luis Herrera", "fecha": "2026-08-14", "total": 135.00, "estado": "Pagada"},
 ]
 
-
 @app.route("/")
 def inicio():
     return render_template(
@@ -40,26 +38,21 @@ def inicio():
         total_facturas=len(facturas),
     )
 
-
 @app.route("/productos")
 def ver_productos():
     return render_template("productos.html", productos=productos)
-
 
 @app.route("/clientes")
 def ver_clientes():
     return render_template("clientes.html", clientes=clientes)
 
-
 @app.route("/proveedores")
 def ver_proveedores():
     return render_template("proveedores.html", proveedores=proveedores)
 
-
 @app.route("/facturacion")
 def ver_facturacion():
     return render_template("facturacion.html", facturas=facturas)
-
 
 if __name__ == "__main__":
     app.run(debug=True)

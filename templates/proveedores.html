@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Proveedores | Sistema de Inventario{% endblock %}
+{% block header %}Módulo de Proveedores{% endblock %}
+{% block subtitle %}Empresas proveedoras utilizadas como información demostrativa.{% endblock %}
+{% block content %}
+<h2 class="h4 fw-bold mb-1">Proveedores</h2>
+<p class="text-secondary mb-4">Información dinámica de proveedores generada desde Flask.</p>
+<div class="row g-4">
+{% for proveedor in proveedores %}
+<div class="col-md-6 col-lg-4">
+<article class="module-card h-100 p-4 rounded-4 shadow-sm">
+<span class="badge text-bg-primary mb-3">Proveedor {{ proveedor.id }}</span>
+<h3 class="h5 fw-bold">{{ proveedor.empresa }}</h3>
+<p class="mb-1"><strong>Contacto:</strong> {{ proveedor.contacto }}</p>
+<p class="mb-0"><strong>Teléfono:</strong> {{ proveedor.telefono }}</p>
+</article>
+</div>
+{% endfor %}
+</div>
+{% endblock %}
