@@ -1,20 +1,61 @@
 {% extends "base.html" %}
-{% block title %}Proveedores | Sistema de Inventario{% endblock %}
-{% block header %}Módulo de Proveedores{% endblock %}
-{% block subtitle %}Empresas proveedoras utilizadas como información demostrativa.{% endblock %}
+
+{% block title %}Proveedores{% endblock %}
+
+{% block header %}Proveedores{% endblock %}
+
+{% block subtitle %}
+Listado de proveedores registrados en el sistema
+{% endblock %}
+
 {% block content %}
-<h2 class="h4 fw-bold mb-1">Proveedores</h2>
-<p class="text-secondary mb-4">Información dinámica de proveedores generada desde Flask.</p>
-<div class="row g-4">
-{% for proveedor in proveedores %}
-<div class="col-md-6 col-lg-4">
-<article class="module-card h-100 p-4 rounded-4 shadow-sm">
-<span class="badge text-bg-primary mb-3">Proveedor {{ proveedor.id }}</span>
-<h3 class="h5 fw-bold">{{ proveedor.empresa }}</h3>
-<p class="mb-1"><strong>Contacto:</strong> {{ proveedor.contacto }}</p>
-<p class="mb-0"><strong>Teléfono:</strong> {{ proveedor.telefono }}</p>
-</article>
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Lista de proveedores</h2>
+
+    <a href="{{ url_for('nuevo_proveedor') }}" class="btn btn-success">
+        Nuevo proveedor
+    </a>
 </div>
-{% endfor %}
+
+{% if proveedores %}
+
+<div class="table-responsive">
+    <table class="table table-striped table-hover align-middle">
+
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Empresa</th>
+                <th>Contacto</th>
+                <th>Teléfono</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for proveedor in proveedores %}
+
+            <tr>
+                <td>{{ proveedor.id }}</td>
+                <td>{{ proveedor.empresa }}</td>
+                <td>{{ proveedor.contacto }}</td>
+                <td>{{ proveedor.telefono }}</td>
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
 </div>
+
+{% else %}
+
+<div class="alert alert-warning">
+    No existen proveedores registrados.
+</div>
+
+{% endif %}
+
 {% endblock %}

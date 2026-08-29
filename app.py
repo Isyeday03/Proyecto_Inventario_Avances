@@ -1,8 +1,15 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for, flash
+
+from forms.producto_form import ProductoForm
+from forms.cliente_form import ClienteForm
+from forms.proveedor_form import ProveedorForm
+from forms.facturacion_form import FacturacionForm
+
 
 app = Flask(__name__)
+app.config["SECRET_KEY"] = "semana11-clave-secreta"
 
-# Datos temporales de ejemplo. Semana 10: sin base de datos.
+
 productos = [
     {"id": 1, "nombre": "Taladro inalámbrico", "categoria": "Herramientas", "precio": 89.90, "stock": 12},
     {"id": 2, "nombre": "Martillo", "categoria": "Herramientas", "precio": 12.50, "stock": 28},
@@ -28,6 +35,7 @@ facturas = [
     {"numero": "F-003", "cliente": "Luis Herrera", "fecha": "2026-08-14", "total": 135.00, "estado": "Pagada"},
 ]
 
+
 @app.route("/")
 def inicio():
     return render_template(
@@ -35,24 +43,111 @@ def inicio():
         total_productos=len(productos),
         total_clientes=len(clientes),
         total_proveedores=len(proveedores),
-        total_facturas=len(facturas),
+        total_facturas=len(facturas)
     )
+
 
 @app.route("/productos")
 def ver_productos():
     return render_template("productos.html", productos=productos)
 
+
+@app.route("/productos/nuevo", methods=["GET", "POST"])
+def nuevo_producto():
+    form = ProductoForm()
+
+    if form.validate_on_submit():
+        nuevo = {
+            "id": len(productos) + 1,
+            "nombre": form.nombre.data,
+            "categoria": form.categoria.data,
+            "precio": float(form.precio.data),
+            "stock": form.stock.data
+        }
+
+        productos.append(nuevo)
+
+        flash("Producto registrado correctamente.", "success")
+        return redirect(url_for("ver_productos"))
+
+    return render_template("formulario_producto.html", form=form)
+
+
 @app.route("/clientes")
 def ver_clientes():
     return render_template("clientes.html", clientes=clientes)
+
+
+@app.route("/clientes/nuevo", methods=["GET", "POST"])
+def nuevo_cliente():
+    form = ClienteForm()
+
+    if form.validate_on_submit():
+        nuevo = {
+            "id": len(clientes) + 1,
+            "nombre": form.nombre.data,
+            "correo": form.correo.data,
+            "telefono": form.telefono.data
+        }
+
+        clientes.append(nuevo)
+
+        flash("Cliente registrado correctamente.", "success")
+        return redirect(url_for("ver_clientes"))
+
+    return render_template("formulario_cliente.html", form=form)
+
 
 @app.route("/proveedores")
 def ver_proveedores():
     return render_template("proveedores.html", proveedores=proveedores)
 
+
+@app.route("/proveedores/nuevo", methods=["GET", "POST"])
+def nuevo_proveedor():
+    form = ProveedorForm()
+
+    if form.validate_on_submit():
+        nuevo = {
+            "id": len(proveedores) + 1,
+            "empresa": form.empresa.data,
+            "contacto": form.contacto.data,
+            "telefono": form.telefono.data
+        }
+
+        proveedores.append(nuevo)
+
+        flash("Proveedor registrado correctamente.", "success")
+        return redirect(url_for("ver_proveedores"))
+
+    return render_template("formulario_proveedor.html", form=form)
+
+
 @app.route("/facturacion")
 def ver_facturacion():
     return render_template("facturacion.html", facturas=facturas)
+
+
+@app.route("/facturacion/nueva", methods=["GET", "POST"])
+def nueva_factura():
+    form = FacturacionForm()
+
+    if form.validate_on_submit():
+        nueva = {
+            "numero": f"F-{len(facturas) + 1:03d}",
+            "cliente": form.cliente.data,
+            "fecha": "2026-08-28",
+            "total": float(form.total.data),
+            "estado": form.estado.data
+        }
+
+        facturas.append(nueva)
+
+        flash("Factura registrada correctamente.", "success")
+        return redirect(url_for("ver_facturacion"))
+
+    return render_template("formulario_facturacion.html", form=form)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
