@@ -1,62 +1,266 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Sistema Web de Inventario</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="static/css/style.css">
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <style>
+        body {
+            background-color: #f5f7fa;
+        }
+
+        .navbar {
+            background-color: #212529;
+        }
+
+        .hero {
+            background-color: #e7f0ff;
+            padding: 65px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        .contenido {
+            padding: 55px 0;
+        }
+
+        .card {
+            border: none;
+            border-radius: 15px;
+        }
+
+        .funcionalidad {
+            margin-bottom: 8px;
+        }
+
+        footer {
+            background-color: #212529;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: 30px;
+        }
+    </style>
 </head>
+
 <body>
-<nav class="navbar navbar-dark bg-dark shadow-sm">
+
+<nav class="navbar navbar-dark">
     <div class="container">
-        <span class="navbar-brand fw-bold">Inventario Web</span>
+        <span class="navbar-brand fw-bold">
+            Inventario Web
+        </span>
+
+        <span class="text-light">
+            Semana 13
+        </span>
     </div>
 </nav>
 
-<header class="hero py-5">
-    <div class="container text-center">
-        <h1 class="display-5 fw-bold">Sistema Web de Inventario</h1>
-        <p class="lead">
+
+<section class="hero">
+
+    <div class="container">
+
+        <h1>
+            Sistema Web de Inventario
+        </h1>
+
+        <p class="lead mt-3">
             Proyecto Integrador - Desarrollo de Aplicaciones Web
         </p>
-    </div>
-</header>
 
-<main class="container py-5">
-    <div class="row g-4 align-items-center">
-        <div class="col-lg-7">
-            <h2 class="fw-bold">Página frontend del proyecto</h2>
-            <p class="text-secondary">
-                Esta versión estática permite mantener visible la interfaz del proyecto
-                mediante GitHub Pages. La versión desarrollada con Python, Flask y Jinja2
-                se encuentra en el repositorio y debe ejecutarse localmente.
-            </p>
-            <div class="alert alert-primary">
-                Para probar las rutas Flask se debe ejecutar <strong>python app.py</strong>
-                y abrir <strong>http://127.0.0.1:5000</strong>.
+        <span class="badge bg-primary fs-6">
+            PostgreSQL + Flask + CRUD
+        </span>
+
+    </div>
+
+</section>
+
+
+<section class="contenido">
+
+    <div class="container">
+
+        <div class="row g-4">
+
+            <div class="col-lg-7">
+
+                <h2 class="fw-bold">
+                    Proyecto Integrador - Semana 13
+                </h2>
+
+                <p class="text-secondary">
+                    Durante este avance se integró la aplicación Flask con
+                    una base de datos relacional PostgreSQL para gestionar
+                    de forma persistente la información del sistema.
+                </p>
+
+                <p class="text-secondary">
+                    El módulo de Productos implementa las operaciones
+                    principales de gestión de datos mediante consultas SQL
+                    parametrizadas.
+                </p>
+
+                <div class="alert alert-primary mt-4">
+
+                    <strong>Aplicación Flask:</strong>
+
+                    para probar todas las funcionalidades debe ejecutarse
+                    localmente mediante
+
+                    <strong>python app.py</strong>
+
+                    y acceder a
+
+                    <strong>http://127.0.0.1:5000</strong>.
+
+                </div>
+
             </div>
+
+
+            <div class="col-lg-5">
+
+                <div class="card shadow-sm">
+
+                    <div class="card-body p-4">
+
+                        <h4 class="fw-bold mb-3">
+                            Funcionalidades incorporadas
+                        </h4>
+
+                        <div class="funcionalidad">
+                            ✅ Registro de productos
+                        </div>
+
+                        <div class="funcionalidad">
+                            ✅ Listado de productos
+                        </div>
+
+                        <div class="funcionalidad">
+                            ✅ Modificación de productos
+                        </div>
+
+                        <div class="funcionalidad">
+                            ✅ Eliminación de productos
+                        </div>
+
+                        <div class="funcionalidad">
+                            ✅ Validaciones Flask-WTF
+                        </div>
+
+                        <div class="funcionalidad">
+                            ✅ Protección CSRF
+                        </div>
+
+                        <div class="funcionalidad">
+                            ✅ Persistencia con PostgreSQL
+                        </div>
+
+                        <div class="funcionalidad">
+                            ✅ Relación Productos - Proveedores
+                        </div>
+
+                        <div class="funcionalidad">
+                            ✅ Consultas SELECT, INSERT, UPDATE y DELETE
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
         </div>
 
-        <div class="col-lg-5">
-            <div class="info-panel p-4 rounded-4 shadow-sm">
-                <h5 class="fw-bold">Módulos incorporados</h5>
-                <ul class="mb-0">
-                    <li>Productos</li>
-                    <li>Clientes</li>
-                    <li>Proveedores</li>
-                    <li>Facturación</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</main>
 
-<footer class="bg-dark text-white text-center py-4">
-    <p class="mb-0">Proyecto Integrador U3 - Avance 9/16</p>
+        <div class="row mt-5">
+
+            <div class="col-12">
+
+                <div class="card shadow-sm">
+
+                    <div class="card-body p-4">
+
+                        <h4 class="fw-bold">
+                            Módulos del sistema
+                        </h4>
+
+                        <div class="row mt-4">
+
+                            <div class="col-md-3 mb-3">
+                                <div class="border rounded p-3 text-center">
+                                    <h5>Productos</h5>
+                                    <span class="badge bg-success">
+                                        CRUD PostgreSQL
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+                                <div class="border rounded p-3 text-center">
+                                    <h5>Clientes</h5>
+                                    <span class="badge bg-secondary">
+                                        Incorporado
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+                                <div class="border rounded p-3 text-center">
+                                    <h5>Proveedores</h5>
+                                    <span class="badge bg-secondary">
+                                        Incorporado
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+                                <div class="border rounded p-3 text-center">
+                                    <h5>Facturación</h5>
+                                    <span class="badge bg-secondary">
+                                        Incorporado
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer>
+    Proyecto Integrador U4 - Semana 13
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-<script src="static/js/script.js"></script>
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
+</script>
+
 </body>
 </html>
