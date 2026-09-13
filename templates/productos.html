@@ -1,34 +1,112 @@
 {% extends "base.html" %}
-{% block title %}Productos | Sistema de Inventario{% endblock %}
-{% block header %}Módulo de Productos{% endblock %}
-{% block subtitle %}Consulta demostrativa del inventario disponible.{% endblock %}
+
+{% block title %}Productos{% endblock %}
+
+{% block header %}Productos{% endblock %}
+
+{% block subtitle %}
+Gestión de productos almacenados en PostgreSQL
+{% endblock %}
+
 {% block content %}
+
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <div><h2 class="h4 fw-bold">Listado de productos</h2><a href="{{ url_for('nuevo_producto') }}" class="btn btn-success mb-3">
-    Nuevo producto
-</a><p class="text-secondary">Datos de ejemplo sin conexión a base de datos.</p></div>
-    <button class="btn btn-primary" onclick="mostrarAviso('Producto')">Nuevo producto</button>
+    <h2>Lista de productos</h2>
+
+    <a href="{{ url_for('nuevo_producto') }}" class="btn btn-success">
+        Nuevo producto
+    </a>
 </div>
-<div class="table-responsive shadow-sm rounded-4">
-<table class="table table-hover align-middle mb-0">
-<thead class="table-dark"><tr><th>ID</th><th>Producto</th><th>Categoría</th><th>Precio</th><th>Stock</th></tr></thead>
-<tbody>
-{% for producto in productos %}
-<tr>
-<td>{{ producto.id }}</td>
-<td class="fw-semibold">{{ producto.nombre|upper }}</td>
-<td>{{ producto.categoria }}</td>
-<td>${{ "%.2f"|format(producto.precio) }}</td>
-<td>
-{% if producto.stock <= 15 %}
-<span class="badge text-bg-warning">{{ producto.stock }} - Stock bajo</span>
+
+{% if productos %}
+
+<div class="table-responsive">
+    <table class="table table-striped table-hover align-middle">
+
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Categoría</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Proveedor</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for producto in productos %}
+
+            <tr>
+                <td>{{ producto.id }}</td>
+
+                <td>
+                    {{ producto.nombre }}
+                </td>
+
+                <td>
+                    {{ producto.categoria }}
+                </td>
+
+                <td>
+                    ${{ "%.2f"|format(producto.precio) }}
+                </td>
+
+                <td>
+                    {{ producto.stock }}
+                </td>
+
+                <td>
+                    {% if producto.proveedor %}
+                        {{ producto.proveedor }}
+                    {% else %}
+                        Sin proveedor
+                    {% endif %}
+                </td>
+
+                <td>
+
+                    <a href="{{ url_for('editar_producto', id_producto=producto.id) }}"
+                       class="btn btn-warning btn-sm">
+                        Editar
+                    </a>
+
+                    <form
+                        action="{{ url_for('eliminar_producto', id_producto=producto.id) }}"
+                        method="POST"
+                        class="d-inline"
+                        onsubmit="return confirm('¿Seguro que desea eliminar este producto?');"
+                    >
+
+                        {{ eliminar_form.hidden_tag() }}
+
+                        <button
+                            type="submit"
+                            class="btn btn-danger btn-sm"
+                        >
+                            Eliminar
+                        </button>
+
+                    </form>
+
+                </td>
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+</div>
+
 {% else %}
-<span class="badge text-bg-success">{{ producto.stock }} - Disponible</span>
-{% endif %}
-</td>
-</tr>
-{% endfor %}
-</tbody>
-</table>
+
+<div class="alert alert-warning">
+    No existen productos registrados.
 </div>
+
+{% endif %}
+
 {% endblock %}
