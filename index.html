@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Sistema Web de Inventario</title>
+    <title>Sistema Web de Inventario - Semana 14</title>
 
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
@@ -59,13 +59,15 @@
 
 <nav class="navbar navbar-dark">
     <div class="container">
+
         <span class="navbar-brand fw-bold">
             Inventario Web
         </span>
 
         <span class="text-light">
-            Semana 13
+            Semana 14
         </span>
+
     </div>
 </nav>
 
@@ -83,7 +85,7 @@
         </p>
 
         <span class="badge bg-primary fs-6">
-            PostgreSQL + Flask + CRUD
+            Flask + PostgreSQL + Autenticación
         </span>
 
     </div>
@@ -100,33 +102,36 @@
             <div class="col-lg-7">
 
                 <h2 class="fw-bold">
-                    Proyecto Integrador - Semana 13
+                    Proyecto Integrador - Semana 14
                 </h2>
 
                 <p class="text-secondary">
-                    Durante este avance se integró la aplicación Flask con
-                    una base de datos relacional PostgreSQL para gestionar
-                    de forma persistente la información del sistema.
+                    En este avance se incorporó un sistema de autenticación
+                    de usuarios integrado con Flask y PostgreSQL.
                 </p>
 
                 <p class="text-secondary">
-                    El módulo de Productos implementa las operaciones
-                    principales de gestión de datos mediante consultas SQL
-                    parametrizadas.
+                    El sistema permite registrar usuarios, proteger sus
+                    contraseñas mediante hash, iniciar y cerrar sesión,
+                    identificar al usuario autenticado y restringir el
+                    acceso a las páginas administrativas.
                 </p>
 
                 <div class="alert alert-primary mt-4">
 
-                    <strong>Aplicación Flask:</strong>
+                    <strong>Importante:</strong>
 
-                    para probar todas las funcionalidades debe ejecutarse
-                    localmente mediante
+                    GitHub Pages muestra únicamente la presentación visual
+                    del proyecto. El sistema real de autenticación, Flask
+                    y PostgreSQL debe ejecutarse localmente mediante:
+
+                    <br><br>
 
                     <strong>python app.py</strong>
 
-                    y acceder a
+                    <br>
 
-                    <strong>http://127.0.0.1:5000</strong>.
+                    <strong>http://127.0.0.1:5000</strong>
 
                 </div>
 
@@ -140,43 +145,43 @@
                     <div class="card-body p-4">
 
                         <h4 class="fw-bold mb-3">
-                            Funcionalidades incorporadas
+                            Autenticación implementada
                         </h4>
 
                         <div class="funcionalidad">
-                            ✅ Registro de productos
+                            ✅ Registro de usuarios
                         </div>
 
                         <div class="funcionalidad">
-                            ✅ Listado de productos
+                            ✅ Usuarios almacenados en PostgreSQL
                         </div>
 
                         <div class="funcionalidad">
-                            ✅ Modificación de productos
+                            ✅ Contraseñas protegidas mediante hash
                         </div>
 
                         <div class="funcionalidad">
-                            ✅ Eliminación de productos
+                            ✅ Inicio de sesión
                         </div>
 
                         <div class="funcionalidad">
-                            ✅ Validaciones Flask-WTF
+                            ✅ Flask-Login
                         </div>
 
                         <div class="funcionalidad">
-                            ✅ Protección CSRF
+                            ✅ Sesiones de usuario
                         </div>
 
                         <div class="funcionalidad">
-                            ✅ Persistencia con PostgreSQL
+                            ✅ Rutas protegidas con login_required
                         </div>
 
                         <div class="funcionalidad">
-                            ✅ Relación Productos - Proveedores
+                            ✅ Usuario actual con current_user
                         </div>
 
                         <div class="funcionalidad">
-                            ✅ Consultas SELECT, INSERT, UPDATE y DELETE
+                            ✅ Cierre de sesión
                         </div>
 
                     </div>
@@ -197,44 +202,109 @@
                     <div class="card-body p-4">
 
                         <h4 class="fw-bold">
-                            Módulos del sistema
+                            Funcionalidades del proyecto
                         </h4>
 
                         <div class="row mt-4">
 
-                            <div class="col-md-3 mb-3">
-                                <div class="border rounded p-3 text-center">
-                                    <h5>Productos</h5>
+                            <div class="col-md-4 mb-3">
+                                <div class="border rounded p-3 text-center h-100">
+
+                                    <h5>
+                                        Autenticación
+                                    </h5>
+
+                                    <span class="badge bg-success">
+                                        Semana 14
+                                    </span>
+
+                                    <p class="mt-3 text-secondary">
+                                        Registro, login, sesión y logout.
+                                    </p>
+
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-4 mb-3">
+                                <div class="border rounded p-3 text-center h-100">
+
+                                    <h5>
+                                        Productos
+                                    </h5>
+
                                     <span class="badge bg-success">
                                         CRUD PostgreSQL
                                     </span>
+
+                                    <p class="mt-3 text-secondary">
+                                        Agregar, listar, editar y eliminar.
+                                    </p>
+
                                 </div>
                             </div>
 
-                            <div class="col-md-3 mb-3">
-                                <div class="border rounded p-3 text-center">
-                                    <h5>Clientes</h5>
-                                    <span class="badge bg-secondary">
-                                        Incorporado
+
+                            <div class="col-md-4 mb-3">
+                                <div class="border rounded p-3 text-center h-100">
+
+                                    <h5>
+                                        Seguridad
+                                    </h5>
+
+                                    <span class="badge bg-success">
+                                        Protegido
                                     </span>
+
+                                    <p class="mt-3 text-secondary">
+                                        Hash, CSRF y rutas privadas.
+                                    </p>
+
                                 </div>
                             </div>
 
-                            <div class="col-md-3 mb-3">
-                                <div class="border rounded p-3 text-center">
-                                    <h5>Proveedores</h5>
+
+                            <div class="col-md-4 mb-3">
+                                <div class="border rounded p-3 text-center h-100">
+
+                                    <h5>
+                                        Clientes
+                                    </h5>
+
                                     <span class="badge bg-secondary">
                                         Incorporado
                                     </span>
+
                                 </div>
                             </div>
 
-                            <div class="col-md-3 mb-3">
-                                <div class="border rounded p-3 text-center">
-                                    <h5>Facturación</h5>
+
+                            <div class="col-md-4 mb-3">
+                                <div class="border rounded p-3 text-center h-100">
+
+                                    <h5>
+                                        Proveedores
+                                    </h5>
+
                                     <span class="badge bg-secondary">
                                         Incorporado
                                     </span>
+
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-4 mb-3">
+                                <div class="border rounded p-3 text-center h-100">
+
+                                    <h5>
+                                        Facturación
+                                    </h5>
+
+                                    <span class="badge bg-secondary">
+                                        Incorporado
+                                    </span>
+
                                 </div>
                             </div>
 
@@ -254,7 +324,7 @@
 
 
 <footer>
-    Proyecto Integrador U4 - Semana 13
+    Proyecto Integrador U4 - Semana 14
 </footer>
 
 
@@ -263,4 +333,5 @@
 </script>
 
 </body>
+
 </html>
